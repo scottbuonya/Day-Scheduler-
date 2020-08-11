@@ -101,6 +101,51 @@ myDay.forEach(function(thisHour){
     var hourField = $("<div>")
     .text(`${thisHour.hour}${thisHour.meridiem}`)
     .attr({
-        "class": "col-md-2 hour"
+        "class": "col-md-3 hour"
     });
+
+    var hourPlan = $("<div>")
+        .attr({
+            "class": "col-md-6 description p-0"
+        });
+    var planData = $("<textarea>");
+    hourPlan.append(planData);
+    planData.attr("id", thisHour.id);
+    if (thisHour.time < moment().format("HH")) {
+        planData.attr ({
+            "class": "past", 
+        })
+    } else if (thisHour.time === moment().format("HH")) {
+        planData.attr({
+            "class": "present"
+        })
+    } else if (thisHour.time > moment().format("HH")) {
+        planData.attr({
+            "class": "future"
+        })
+    }
+
+    var saveButton = $("<i class='far fa-save fa-lg'></i>")
+    var savePlan = $("<button>")
+        .attr({
+            "class": "col-md-3 saveBtn"
+    });
+    savePlan.append(saveButton);
+    hourRow.append(hourField, hourPlan, savePlan);
 })
+
+// loads any existing localstorage data after components created
+init();
+
+
+// saves data to be used in localStorage
+$(".saveBtn").on("click", function(event) {
+    event.preventDefault();
+    var saveIndex = $(this).siblings(".description").children(".future").attr("id");
+    myDay[saveIndex].reminder = $(this).siblings(".description").children(".future").val();
+    console.log(saveIndex);
+    saveReminders();
+    displayReminders();
+})
+    
+    
