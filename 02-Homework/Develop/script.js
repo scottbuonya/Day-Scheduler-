@@ -134,11 +134,11 @@ myDay.forEach(function(thisHour){
     hourRow.append(hourField, hourPlan, savePlan);
 })
 
-// loads any existing localstorage data after components created
+
 init();
 
 
-// saves data to be used in localStorage
+
 $(".saveBtn").on("click", function(event) {
     event.preventDefault();
     var saveIndex = $(this).siblings(".description").children(".future").attr("id");
