@@ -1,14 +1,12 @@
 // using moment js 
-// function momentDate() {
-// var currentDate = moment().format("dddd, MMMM Do");
-// $("#currentDay").text(currentDate);
-// };
-function getHeaderDate() {
-    var currentHeaderDate = moment().format('dddd, MMMM Do');
-    $("#currentDay").text(currentHeaderDate);
-}
-// more variables 
-var hour = moment().format("H");
+function momentDate() {
+var currentDate = moment().format("dddd, MMMM Do");
+$("#currentDay").text(currentDate);
+};
+// calling moment
+momentDate();
+
+
 var button = $(".saveBtn")
 var moment = moment();
 
@@ -16,9 +14,14 @@ var moment = moment();
 // click functions to save to local storage
 button.on("click", function () {
     var dataInput = $(this).siblings(".description").val();
-    var rowEl = $(this).parent().attr("id");
-    localStorage.setItem(rowEl, dataInput)
+    
+    var timeBlock = $(this).parent().attr("id");
+    localStorage.setItem(timeBlock, dataInput)
+    
 });
+
+
+
 // brings back the local storage that is typed in
 $("#9 .description").val(localStorage.getItem("9"))
 $("#10 .description").val(localStorage.getItem("10"))
