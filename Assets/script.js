@@ -8,7 +8,7 @@ momentDate();
 
 
 var button = $(".saveBtn")
-var moment = moment();
+// var moment = moment();
 
 
 // click functions to save to local storage
